@@ -1,5 +1,6 @@
 import datetime
 import locale
+import logging
 import smtplib
 import ssl
 from email.message import EmailMessage
@@ -10,6 +11,8 @@ from flask import request
 
 # Flask Config
 app = flask.Flask(__name__)
+app.logger.addHandler(logging.StreamHandler())
+app.logger.setLevel(logging.INFO)
 
 # SMTP Config
 sender_email = config('TMS_MS_EMAIL')
@@ -50,4 +53,4 @@ def send_email_notification():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port="7200")
+    app.run(host='0.0.0.0', debug=True, port=7200)
