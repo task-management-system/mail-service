@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:alpine
 
 RUN mkdir /app
 
@@ -10,6 +10,6 @@ RUN pip install -r /app/resources/requirements.txt
 
 EXPOSE 7200
 
-ENTRYPOINT ['python']
+ENTRYPOINT ["python"]
 
-CMD ['src/application.py']
+CMD ["src/application.py"]
