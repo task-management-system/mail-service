@@ -21,6 +21,11 @@ context = ssl.create_default_context()
 locale.setlocale(locale.LC_TIME, "ru_RU")
 
 
+@app.route('/api/v1/test')
+def test():
+    return ('Service is up', 200)
+
+
 @app.route('/api/v1/send-email-notification', methods=['POST'])
 def send_email_notification():
     for data in request.get_json():
