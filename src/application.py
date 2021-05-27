@@ -3,6 +3,7 @@ import locale
 import logging
 import smtplib
 import ssl
+from dateutil.parser import parse
 from email.message import EmailMessage
 
 import flask
@@ -39,7 +40,7 @@ def new_task():
 
         title = data['taskTitle']
         creatorName = data['creatorName']
-        dueDate = datetime.datetime.fromisoformat(data['taskDueDate']).strftime('%X %d %b, %Y')
+        dueDate = parse(data['taskDueDate']).strftime('%X %x')
 
         html = f"""\
         <html>
@@ -78,8 +79,8 @@ def close_task():
     else:
         executorPrefix = 'Исполнитель'
     plainExecutorNames = ', '.join(data['executorNames'])
-    createdDate = datetime.datetime.fromisoformat(data['taskCreatedDate']).strftime('%X %d %b, %Y')
-    dueDate = datetime.datetime.fromisoformat(data['taskDueDate']).strftime('%X %d %b, %Y')
+    createdDate = parse(data['taskDueDate']).strftime('%X %x')
+    dueDate = parse(data['taskDueDate']).strftime('%X %x')
 
     html = f"""\
     <html>
